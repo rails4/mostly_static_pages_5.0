@@ -108,6 +108,7 @@ _Gemfile_
 ```ruby
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
+  gem 'rails-controller-testing'
   gem 'capybara'
 end
 ```
@@ -126,6 +127,7 @@ rails generate controller StaticPages home help
         create    spec/views/static_pages/help.html.erb_spec.rb
         invoke  helper
 rm -rf spec/helpers/
+rails db:migrate
 ```
 
 Clean up _routes.rb_.
@@ -142,6 +144,10 @@ Takie same poprawki w _help.html.erb_.
 ```ruby
 RSpec.describe "static_pages/home.html.erb", type: :view do
   # pending "add some examples to (or delete) #{__FILE__}"
+  it "displays string StaticPages#home" do
+    render
+    expect(rendered).to include("StaticPages#home")
+  end
 end
 ```
 
@@ -157,6 +163,10 @@ RSpec.describe StaticPagesController, type: :controller do
     it "returns http success" do
       get :home
       expect(response).to have_http_status(:success)
+    end
+    it "renders the home template" do
+      get :home
+      expect(response).to render_template("home")
     end
   end
 
