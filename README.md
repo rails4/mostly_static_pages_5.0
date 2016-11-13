@@ -41,3 +41,15 @@ git init
 git add .
 git commit -m "initial commit"
 ```
+
+```sh
+create  app/controllers/static_pages_controller.rb
+ route  get 'static_pages/help'
+ route  get 'static_pages/home'
+invoke  erb
+create    app/views/static_pages
+create    app/views/static_pages/home.html.erb
+create    app/views/static_pages/help.html.erb
+invoke  test_unit
+create    test/controllers/static_pages_controller_test.rb
+```
