@@ -182,3 +182,7 @@ end
 ```sh
 rspec -fd
 ```
+
+## Getting started with Capybara
+
+TODO: see docs for examples
