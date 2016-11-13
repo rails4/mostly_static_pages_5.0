@@ -65,6 +65,49 @@ end
 
 ## Getting started with testing – MiniTest
 
-```ruby
+```sh
+rails routes
+Prefix Verb URI Pattern     Controller#Action
+  home GET  /home(.:format) static_pages#home
+  help GET  /help(.:format) static_pages#help
+  root GET  /               static_pages#home
+```
 
+_test/controllers/static_pages_controller_test.rb_
+```ruby
+class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  test 'should get home' do
+    get home_url
+    assert_response :success
+  end
+
+  test 'should get help' do
+    get help_url
+    assert_response :success
+  end
+
+  test 'should get root page' do
+    get root_url
+    assert_response :success
+  end
+end
+```
+
+```sh
+rails test
+```
+
+
+## Getting started with testing – RSpec
+
+```sh
+rm -rf test
+```
+
+_Gemfile_
+```ruby
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
+end
 ```
