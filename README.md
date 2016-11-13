@@ -53,3 +53,18 @@ create    app/views/static_pages/help.html.erb
 invoke  test_unit
 create    test/controllers/static_pages_controller_test.rb
 ```
+
+_config/routes.rb_
+```ruby
+Rails.application.routes.draw do
+  get 'home', to: 'static_pages#home'
+  get 'help', to: 'static_pages#help'
+  root 'static_pages#home'
+end
+```
+
+## Getting started with testing – MiniTest
+
+```ruby
+
+```
