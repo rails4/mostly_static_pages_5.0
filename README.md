@@ -43,15 +43,16 @@ git commit -m "initial commit"
 ```
 
 ```sh
-create  app/controllers/static_pages_controller.rb
- route  get 'static_pages/help'
- route  get 'static_pages/home'
-invoke  erb
-create    app/views/static_pages
-create    app/views/static_pages/home.html.erb
-create    app/views/static_pages/help.html.erb
-invoke  test_unit
-create    test/controllers/static_pages_controller_test.rb
+rails generate controller StaticPages home help
+    create  app/controllers/static_pages_controller.rb
+     route  get 'static_pages/help'
+     route  get 'static_pages/home'
+    invoke  erb
+    create    app/views/static_pages
+    create    app/views/static_pages/home.html.erb
+    create    app/views/static_pages/help.html.erb
+    invoke  test_unit
+    create    test/controllers/static_pages_controller_test.rb
 ```
 
 _config/routes.rb_
@@ -97,7 +98,6 @@ end
 rails test
 ```
 
-
 ## Getting started with testing – RSpec
 
 ```sh
@@ -110,4 +110,65 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'capybara'
 end
+```
+
+```sh
+rails g rspec:install
+      create  .rspec
+      create  spec
+      create  spec/spec_helper.rb
+      create  spec/rails_helper.rb
+rails generate controller StaticPages home help
+        invoke  rspec
+        create    spec/controllers/static_pages_controller_spec.rb
+        create    spec/views/static_pages
+        create    spec/views/static_pages/home.html.erb_spec.rb
+        create    spec/views/static_pages/help.html.erb_spec.rb
+        invoke  helper
+rm -rf spec/helpers/
+```
+
+Clean up _routes.rb_.
+
+```sh
+spec/
+└── views
+    └── static_pages
+        ├── help.html.erb_spec.rb
+        └── home.html.erb_spec.rb
+```
+
+Takie same poprawki w _help.html.erb_.
+```ruby
+RSpec.describe "static_pages/home.html.erb", type: :view do
+  # pending "add some examples to (or delete) #{__FILE__}"
+end
+```
+
+```sh
+spec/
+├── controllers
+│   └── static_pages_controller_spec.rb
+```
+
+```ruby
+RSpec.describe StaticPagesController, type: :controller do
+  describe "GET #home" do
+    it "returns http success" do
+      get :home
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "GET #help" do
+    it "returns http success" do
+      get :help
+      expect(response).to have_http_status(:success)
+    end
+  end
+end
+```
+
+```sh
+rspec -fd
 ```
