@@ -185,4 +185,14 @@ rspec -fd
 
 ## Getting started with Capybara
 
-TODO: see docs for examples
+_rails_helper.rb_
+```ruby
+require 'capybara/rails'
+
+RSpec.configure do |config|
+  config.include Capybara::DSL
+```
+
+```ruby
+
+```
