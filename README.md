@@ -185,14 +185,24 @@ rspec -fd
 
 ## Getting started with Capybara
 
-_rails_helper.rb_
+Dopisujemy do pliku _rails_helper.rb_ dwie linie kodu.
 ```ruby
 require 'capybara/rails'
 
-RSpec.configure do |config|
+# RSpec.configure do |config|
   config.include Capybara::DSL
 ```
 
 ```ruby
+RSpec.describe "Static Pages", type: :request do
+  it 'home page displays the string StaticPages#home' do
+    visit '/'
+    expect(page).to have_content('StaticPages#home')
+    expect(page).to have_selector('h1', text: 'StaticPages#home')
+  end
+end
+```
 
+``sh
+rspec -fd
 ```
