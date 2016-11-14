@@ -201,6 +201,9 @@ RSpec.describe "Static Pages", type: :request do
 end
 ```
 
-``sh
+```sh
 rspec -fd
 ```
+
+Więcej informacji –
+[Using Capybara with RSpec](https://github.com/jnicklas/capybara#using-capybara-with-rspec)
