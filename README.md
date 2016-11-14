@@ -185,10 +185,8 @@ rspec -fd
 
 ## Getting started with Capybara
 
-Dopisujemy do pliku _rails_helper.rb_ dwie linie kodu.
+Dopisujemy do pliku _rails_helper.rb_ w bloku `config`:
 ```ruby
-require 'capybara/rails'
-
 # RSpec.configure do |config|
   config.include Capybara::DSL
 ```
